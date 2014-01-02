@@ -1,0 +1,14 @@
+doctype html
+html
+  head
+    title= title + ' - ' + domain
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+    ul.nav
+      each entry in navList
+        li(class=(title === entry.name ? 'active' : ''))
+          a(href=entry.href)
+            img(src=entry.img)
+            = entry.name
+    h1= title
+    block content

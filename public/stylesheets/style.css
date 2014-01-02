@@ -1,0 +1,33 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+a:link {
+  color: #00b7ff;
+  text-decoration: none;
+}
+a:visited {
+  color: #b700ff;
+  text-decoration: none;
+}
+a:hover {
+  color: #80dbff;
+  text-decoration: underline;
+}
+a:active {
+  color: #005c80;
+  text-decoration: underline;
+}
+.nav {
+  float: right;
+  list-style-type: none;
+}
+.active {
+  list-style-type: disc;
+}
+.contact {
+  list-style-type: none;
+}
+img {
+  vertical-align: middle;
+}

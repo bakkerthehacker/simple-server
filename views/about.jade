@@ -1,0 +1,42 @@
+extends layout
+
+block content
+  h3 About this server
+  p This website is written in node.js using express, jade, stylus and forever.
+  p It is currently running on a raspberry pi.
+  p You can view the source code on github 
+    a(href='https://github.com/bakkerthehacker/simple-server') here
+    | .
+  h3 About me
+  p My name is Grant Bakker.
+  p I am currently studying electrical engineering at the University of Waterloo.
+  p You can find me on various websites below.
+    ul.contact
+      li
+        a(href='https://github.com/bakkerthehacker')
+          img(src='/images/'+imgSize+'/octocat.png')
+          = 'GitHub'
+      li
+        a(href='https://www.linkedin.com/pub/grant-bakker/71/723/b53')
+          img(src='/images/'+imgSize+'/linkedin.png')
+          = 'LinkedIn'
+      li
+        a(href='http://steamcommunity.com/id/bakkerthehacker')
+          img(src='/images/'+imgSize+'/steam.png')
+          = 'Steam'
+      li
+        a(href='mailto:grant@bakker.pw')
+          img(src='/images/'+imgSize+'/evolution.png')
+          = 'Email'
+      li
+        a(href='https://www.google.com/+GrantBakker')
+          img(src='/images/'+imgSize+'/google.png')
+          = 'Google+'
+      li
+        a(href='https://twitter.com/bakkerthehacker')
+          img(src='/images/'+imgSize+'/twitter.png')
+          = 'Twitter'
+      li
+        a(href='https://www.facebook.com/grant.bakker')
+          img(src='/images/'+imgSize+'/facebook.png')
+          = 'Facebook'
