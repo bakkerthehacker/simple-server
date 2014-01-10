@@ -1,3 +1,3 @@
 module.exports = function(req, res){
-  res.render('torrent', { title: 'Torrent' });
+  res.render('torrent', { title: 'Torrent', link: 'torrent.bakker.pw' });
 };

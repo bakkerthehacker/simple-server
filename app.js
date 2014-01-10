@@ -25,16 +25,23 @@ if ('development' == app.get('env')) {
 
 // global jade properties
 var imgSize = 24;
-
 app.locals({
     imgSize: imgSize,
     domain: 'bakker.pw',
-    navList: [{name:'Home', href:'/', img:'/images/'+imgSize+'/workspace-switcher.png'}, {name:'Minecraft', href:'/minecraft', img:'/images/'+imgSize+'/minecraft.png'}, {name:'Torrent', href:'/torrent', img:'/images/'+imgSize+'/transmission.png'}, {name:'Router', href:'/router', img:'/images/'+imgSize+'/network-server.png'}, {name:'About', href:'/about', img:'/images/'+imgSize+'/dialog-information.png'}]
+    navList: [
+        {name:'Home', href:'/', img:'/images/'+imgSize+'/workspace-switcher.png'},
+        {name:'Minecraft', href:'/minecraft', img:'/images/'+imgSize+'/minecraft.png'},
+        {name:'Torrent', href:'/torrent', img:'/images/'+imgSize+'/transmission.png'},
+        {name:'XBMC', href:'/xbmc', img:'/images/'+imgSize+'/video-x-generic.png'},
+        {name:'Router', href:'/router', img:'/images/'+imgSize+'/network-server.png'},
+        {name:'About', href:'/about', img:'/images/'+imgSize+'/dialog-information.png'}
+    ]
 });
 
 app.get('/', require('./routes/index'));
 app.get('/minecraft', require('./routes/minecraft'));
 app.get('/torrent', require('./routes/torrent'));
+app.get('/xbmc', require('./routes/xbmc'));
 app.get('/router', require('./routes/router'));
 app.get('/about', require('./routes/about'));
 

@@ -1,4 +1,7 @@
 extends layout
 
 block content
-  p Welcome to #{title}
+  p The router is available at 
+    a(href='http://' + link)
+      <strong>#{link}</strong>
+  p If you want something changed, talk to Grant
