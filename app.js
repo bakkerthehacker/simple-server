@@ -1,11 +1,14 @@
 var express = require('express');
 var http = require('http');
+var https = require('https');
 var path = require('path');
+var fs = require('fs');
 
 var app = express();
 
 // all environments
 app.set('port', process.env.PORT || 80);
+app.set('httpsport', process.env.HTTPS_PORT || 443);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 //app.use(express.favicon());
@@ -45,6 +48,15 @@ app.get('/xbmc', require('./routes/xbmc'));
 app.get('/router', require('./routes/router'));
 app.get('/about', require('./routes/about'));
 
-http.createServer(app).listen(app.get('port'), function(){
+var credentials = {key: fs.readFileSync('/home/pi/openssl/decrypted.private.key'), cert: fs.readFileSync('/home/pi/openssl/unified.crt')};
+
+var httpServer = http.createServer(app);
+var httpsServer = https.createServer(credentials, app);
+
+httpServer.listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
+});
+
+httpsServer.listen(app.get('httpsport'), function(){
+  console.log('Express server listening on port ' + app.get('httpsport'));
 });
