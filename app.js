@@ -11,6 +11,18 @@ app.set('port', process.env.PORT || 80);
 app.set('httpsport', process.env.HTTPS_PORT || 443);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+
+// redirect http to https
+function requireHTTPS(req, res, next) {
+    if (!req.secure) {
+        //FYI this should work for local development as well
+        return res.redirect('https://' + req.get('host') + req.url);
+    }
+    next();
+}
+
+app.use(requireHTTPS);
+
 //app.use(express.favicon());
 app.use(express.favicon(path.join(__dirname, 'public/images/favicon.ico')));
 app.use(express.logger('dev'));
