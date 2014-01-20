@@ -38,6 +38,9 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
+// 404
+app.use(require('./routes/404'));
+
 // global jade properties
 var imgSize = 24;
 app.locals({
