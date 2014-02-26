@@ -15,3 +15,21 @@ block content
   p The map is available at 
     a(href='http://' + link target='_blank')
       <strong>#{link}</strong>
+  if status.survival.length
+    h3 Survival Players
+    p
+      ul.players.cleanList
+        each player in status.survival
+          li
+            img(src='http://minecraft.aggenkeech.com/face.php?u=' + player.username + '&s=' + imgSize)
+            = ' ' + player.username
+  if status.creative.length
+    h3 Creative Players
+    p
+      ul.players.cleanList
+        each player in status.creative
+          li
+            img(src='http://minecraft.aggenkeech.com/face.php?u=' + player.username + '&s=' + imgSize)
+            = ' ' + player.username
+  if status.survival.length || status.creative.length
+    p Updated #{status.updated}

@@ -2,3 +2,9 @@ extends layout
 
 block content
   p Welcome to #{domain}
+  h3 Server Status
+  ul.status
+    li #{(status.online ? 'Online ' : 'Offline ')}
+      img(src='/images/' + 16 + '/' + (status.online ? 'online' : 'offline') +'.png')
+    li Disk usage #{status.disk}
+    li Updated #{status.updated}
