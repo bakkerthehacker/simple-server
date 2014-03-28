@@ -51,6 +51,7 @@ app.locals({
         {name:'Minecraft', href:'/minecraft', img:'/images/'+imgSize+'/minecraft.png'},
         {name:'Torrent', href:'/torrent', img:'/images/'+imgSize+'/transmission.png'},
         {name:'XBMC', href:'/xbmc', img:'/images/'+imgSize+'/video-x-generic.png'},
+        {name:'Mumble', href:'/mumble', img:'/images/'+imgSize+'/mumble.png'},
         {name:'Router', href:'/router', img:'/images/'+imgSize+'/network-server.png'},
         {name:'About', href:'/about', img:'/images/'+imgSize+'/dialog-information.png'}
     ]
@@ -60,6 +61,7 @@ app.get('/', require('./routes/index'));
 app.get('/minecraft', require('./routes/minecraft'));
 app.get('/torrent', require('./routes/torrent'));
 app.get('/xbmc', require('./routes/xbmc'));
+app.get('/mumble', require('./routes/mumble'));
 app.get('/router', require('./routes/router'));
 app.get('/about', require('./routes/about'));
 
