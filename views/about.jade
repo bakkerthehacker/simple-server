@@ -1,30 +1,30 @@
 extends layout
 
 block content
-  h3 About this server
-  p This website is written in node.js using express, jade, stylus and forever.
-  p It is currently running on a raspberry pi.
-  p View the source code 
-    a(href='https://github.com/bakkerthehacker/simple-server' target='_blank') on github
-    | .
-  h3 About me
-  p My name is Grant Bakker.
-  p I am currently studying electrical engineering at the University of Waterloo.
-  p 
-    ul.contact
-      mixin contactLink(href, name, icon)
-        li
-          a(href=href target='_blank')
-            img(src='/images/'+imgSize+'/'+icon+'.png')
-            = name
-      +contactLink('http://blog.bakker.pw', 'Blog', 'text-plain')
-      +contactLink('https://www.bakker.pw/pdfs/Resume.pdf', 'Resume', 'applications-development')
-      +contactLink('https://github.com/bakkerthehacker', 'GitHub', 'octocat')
-      +contactLink('https://www.linkedin.com/pub/grant-bakker/71/723/b53', 'LinkedIn', 'linkedin')
-      +contactLink('http://steamcommunity.com/id/bakkerthehacker', 'Steam', 'steam')
-      +contactLink('mailto:grant@bakker.pw', 'Email', 'evolution')
-      +contactLink('https://www.google.com/+GrantBakker', 'Google+', 'google')
-      +contactLink('https://twitter.com/bakkerthehacker', 'Twitter', 'twitter')
-      +contactLink('http://www.last.fm/user/bakkerthehacker', 'Last.fm', 'lastfm')
-      +contactLink('bitcoin:1GrANTBdVhTDsosWRUXpwWiYGjYdBLUmkQ', 'Bitcoin', 'wxbanker')
+	h3 About this server
+	p This website is written in node.js using express, jade, stylus and forever.
+	p It is currently running on a raspberry pi.
+	p View the source code 
+		a(href='https://github.com/bakkerthehacker/simple-server' target='_blank') on github
+		| .
+	h3 About me
+	p My name is Grant Bakker.
+	p I am currently studying electrical engineering at the University of Waterloo.
+	p 
+		ul.contact
+			mixin contactLink(href, name, icon)
+				li
+					a(href=href target='_blank')
+						img(src='/images/'+imgSize+'/'+icon+'.png')
+						= name
+			+contactLink('http://blog.bakker.pw', 'Blog', 'text-plain')
+			+contactLink('https://www.bakker.pw/pdfs/Resume.pdf', 'Resume', 'applications-development')
+			+contactLink('https://github.com/bakkerthehacker', 'GitHub', 'octocat')
+			+contactLink('https://www.linkedin.com/pub/grant-bakker/71/723/b53', 'LinkedIn', 'linkedin')
+			+contactLink('http://steamcommunity.com/id/bakkerthehacker', 'Steam', 'steam')
+			+contactLink('mailto:grant@bakker.pw', 'Email', 'evolution')
+			+contactLink('https://www.google.com/+GrantBakker', 'Google+', 'google')
+			+contactLink('https://twitter.com/bakkerthehacker', 'Twitter', 'twitter')
+			+contactLink('http://www.last.fm/user/bakkerthehacker', 'Last.fm', 'lastfm')
+			+contactLink('bitcoin:1GrANTBdVhTDsosWRUXpwWiYGjYdBLUmkQ', 'Bitcoin', 'wxbanker')
 

@@ -11,6 +11,8 @@
     "jade": "*",
     "moment": "*",
     "request": "*",
+    "strong-cluster-tls-store": "^0.1.0",
+    "strong-store-cluster": "^0.1.3",
     "stylus": "*"
   }
 }

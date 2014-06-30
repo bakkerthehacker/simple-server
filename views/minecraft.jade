@@ -1,35 +1,35 @@
 extends layout
 
 block content
-  p The survival server is <strong>survival.bakker.pw</strong>
-  p The creative server is <strong>creative.bakker.pw</strong>
-  h3 Survival Rules
-  ul.rules
-    li Survive
-  h3 Creative Rules
-  ul.rules
-    li No massive TNT explosions
-    li Do not break things that are not yours
-    li Do not use the plugins unless you know what you are doing
-  h3 Map
-  p The map is available at 
-    a(href='http://' + link target='_blank')
-      <strong>#{link}</strong>
-  if status.survival.length
-    h3 Survival Players
-    p
-      ul.players.cleanList
-        each player in status.survival
-          li
-            img(src='http://minecraft.aggenkeech.com/face.php?u=' + player.username + '&s=' + imgSize)
-            = ' ' + player.username
-  if status.creative.length
-    h3 Creative Players
-    p
-      ul.players.cleanList
-        each player in status.creative
-          li
-            img(src='http://minecraft.aggenkeech.com/face.php?u=' + player.username + '&s=' + imgSize)
-            = ' ' + player.username
-  if status.survival.length || status.creative.length
-    p Updated #{status.updated}
+	p The survival server is <strong>survival.bakker.pw</strong>
+	p The creative server is <strong>creative.bakker.pw</strong>
+	h3 Survival Rules
+	ul.rules
+		li Survive
+	h3 Creative Rules
+	ul.rules
+		li No massive TNT explosions
+		li Do not break things that are not yours
+		li Do not use the plugins unless you know what you are doing
+	h3 Map
+	p The map is available at 
+		a(href='http://' + link target='_blank')
+			<strong>#{link}</strong>
+	if status.survival.length
+		h3 Survival Players
+		p
+			ul.players.cleanList
+				each player in status.survival
+					li
+						img(src='http://minecraft.aggenkeech.com/face.php?u=' + player.username + '&s=' + imgSize)
+						= ' ' + player.username
+	if status.creative.length
+		h3 Creative Players
+		p
+			ul.players.cleanList
+				each player in status.creative
+					li
+						img(src='http://minecraft.aggenkeech.com/face.php?u=' + player.username + '&s=' + imgSize)
+						= ' ' + player.username
+	if status.survival.length || status.creative.length
+		p Updated #{status.updated}
