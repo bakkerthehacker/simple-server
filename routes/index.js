@@ -30,13 +30,13 @@ module.exports = function(req, res){
 		updated: function(updatedCallback){
 			request('http://' + serverDomain + '/status/date', function (error, response, body) {
 				if (!error && response.statusCode == 200) {
-					var updated = moment(body)
-					var text = ''
-					if (updated.isBefore(moment())) {
-						text = moment().fromNow();
-					}else{
-						text = updated.fromNow();
+					var updated = moment(body);
+					var text = '';
+					var now = moment();
+					if (updated.isAfter(now)) {
+						updated = now;
 					}
+					text = updated.from(now);
 					updatedCallback(null, text);
 				}else{
 					updatedCallback(null, 'unavailable!');
