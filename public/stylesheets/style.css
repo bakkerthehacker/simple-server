@@ -3,19 +3,19 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 a:link {
-  color: #00b7ff;
+  color: #127fdc;
   text-decoration: none;
 }
 a:visited {
-  color: #b700ff;
+  color: #17344d;
   text-decoration: none;
 }
 a:hover {
-  color: #80dbff;
+  color: #669dcc;
   text-decoration: underline;
 }
 a:active {
-  color: #005c80;
+  color: #17344d;
   text-decoration: underline;
 }
 .cleanList {
