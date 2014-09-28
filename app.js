@@ -14,7 +14,6 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 redirects = [
-	{host:'benteichman.ca',port:'3300'},
 	{host:'torrent.bakker.pw',port:'9091'},
 	{host:'server.bakker.pw',port:'9980'},
 	{host:'xbmc.bakker.pw',port:'4444'},
@@ -36,7 +35,6 @@ app.use(redirect);
 // redirect http to https
 function requireHTTPS(req, res, next) {
 	if (!req.secure) {
-		//FYI this should work for local development as well
 		return res.redirect(301, 'https://' + req.get('host') + req.url);
 	}
 	res.header('Strict-Transport-Security', 'max-age=31536000');
@@ -72,9 +70,9 @@ app.locals({
 		{name:'Home', href:'/', img:'/images/'+imgSize+'/workspace-switcher.png'},
 		{name:'Minecraft', href:'/minecraft', img:'/images/'+imgSize+'/minecraft.png'},
 		{name:'Torrent', href:'/torrent', img:'/images/'+imgSize+'/transmission.png'},
-		{name:'XBMC', href:'/xbmc', img:'/images/'+imgSize+'/video-x-generic.png'},
+		//{name:'XBMC', href:'/xbmc', img:'/images/'+imgSize+'/video-x-generic.png'},
 		{name:'Mumble', href:'/mumble', img:'/images/'+imgSize+'/mumble.png'},
-		{name:'Router', href:'/router', img:'/images/'+imgSize+'/network-server.png'},
+		//{name:'Router', href:'/router', img:'/images/'+imgSize+'/network-server.png'},
 		{name:'About', href:'/about', img:'/images/'+imgSize+'/dialog-information.png'}
 	]
 });
@@ -97,8 +95,8 @@ var cipherList = [
 ];
 
 var credentials = {
-	key: fs.readFileSync('/home/pi/openssl/decrypted.private.key'),
-	cert: fs.readFileSync('/home/pi/openssl/unified.crt'),
+	key: fs.readFileSync('/home/gbakker/openssl/decrypted.private.key'),
+	cert: fs.readFileSync('/home/gbakker/openssl/unified.crt'),
 	ciphers: cipherList.join(':'),
 	honorCipherOrder: true	
 };

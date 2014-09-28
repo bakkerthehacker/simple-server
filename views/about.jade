@@ -3,7 +3,9 @@ extends layout
 block content
 	h3 About this server
 	p This website is written in node.js using express, jade, stylus and forever.
-	p It is currently running on a raspberry pi.
+	p It is currently running on a chunk from 
+		a(href='https://chunkhost.com' target='_blank') chunkhost
+		| .
 	p View the source code 
 		a(href='https://github.com/bakkerthehacker/simple-server' target='_blank') on github
 		| .
@@ -17,7 +19,7 @@ block content
 					a(href=href target='_blank')
 						img(src='/images/'+imgSize+'/'+icon+'.png')
 						= name
-			+contactLink('http://blog.bakker.pw', 'Blog', 'text-plain')
+			+contactLink('https://medium.com/@bakkerthehacker', 'Blog', 'text-plain')
 			+contactLink('https://www.bakker.pw/pdfs/Resume.pdf', 'Resume', 'applications-development')
 			+contactLink('https://github.com/bakkerthehacker', 'GitHub', 'octocat')
 			+contactLink('https://www.linkedin.com/pub/grant-bakker/71/723/b53', 'LinkedIn', 'linkedin')

@@ -1,52 +1,41 @@
 var async = require('async');
 var request = require('request');
 var moment = require('moment');
+var child_process = require('child_process');
 
-var serverDomain = 'server.bakker.pw:9980';
 
 module.exports = function(req, res){
 	async.parallel({
-		disk: function(diskCallback){
-			request('http://' + serverDomain + '/status/disk', function (error, response, body) {
-				if (!error && response.statusCode == 200) {
-					var diskUsage = JSON.parse(body);
-					var symbol = 'GB';
-					var size = 1000 * 1000;
-					diskUsage.used /= size;
-					diskUsage.available /= size;
-					var percent = Math.round((diskUsage.used / (diskUsage.used + diskUsage.available)) * 100);
-					var text = percent + '% ( ' + Math.round(diskUsage.used) + symbol + ' / ' + Math.round(diskUsage.used + diskUsage.available) + symbol + ' )';
-					diskCallback(null, text);
-				}else{
-					diskCallback(null, 'unavailable!');
+		chunkDisk: function(parallelCallback){
+			child_process.spawn('df', ['/', '--output=used,avail']).stdout.on('data', function(data){
+				var diskData = data.toString().split('\n')[1].split(' ');
+				var used = parseInt(diskData[0], 10);
+				var avail = parseInt(diskData[1], 10);
+				var total = used + avail;
+				var sizeSuffixes = ['KB', 'MB', 'GB', 'TB'];
+				var suffixIndex = 0;
+				while(total > 1024){
+					used /= 1024;
+					avail /= 1024;
+					total /= 1024;
+					suffixIndex++;
 				}
-			});
-		},
-		online: function(onlineCallback){
-			request('http://' + serverDomain + '/', function (error, response, body) {
-				onlineCallback(null, !error && response.statusCode == 200);
-			});
-		},
-		updated: function(updatedCallback){
-			request('http://' + serverDomain + '/status/date', function (error, response, body) {
-				if (!error && response.statusCode == 200) {
-					var updated = moment(body);
-					var text = '';
-					var now = moment();
-					if (updated.isAfter(now)) {
-						updated = now;
-					}
-					text = updated.from(now);
-					updatedCallback(null, text);
-				}else{
-					updatedCallback(null, 'unavailable!');
-				}
+				var suffix = sizeSuffixes[suffixIndex];
+				var diskString = Math.round((used / total) * 100) + '% (' + Math.round(used) + suffix + ' / ' + Math.round(total) + suffix + ')';
+				parallelCallback(null, diskString);
 			});
 		}
-	},function(error, statusResults){
+	}, function(parallelError, results){
 		res.render('home',{
 			title: 'Home',
-			status: statusResults
+			status: {
+				chunk: {
+					name: 'Chunk',
+					online: true,
+					disk: results.chunkDisk,
+					updated: 'now'
+				}
+			}
 		});
 	});
 };
