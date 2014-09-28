@@ -15,7 +15,7 @@ app.set('view engine', 'jade');
 
 redirects = [
 	{host:'torrent.bakker.pw',port:'9091'},
-	{host:'server.bakker.pw',port:'9980'},
+	{host:'chunk.bakker.pw',port:'9980'},
 	{host:'xbmc.bakker.pw',port:'4444'},
 ];
 
@@ -23,8 +23,10 @@ redirects = [
 function redirect(req, res, next) {
 	for(var i = 0; i < redirects.length; i++){
 		redirect = redirects[i];
-		if (req.get('host').indexOf(redirect.host) !== -1) {
-			return res.redirect('http://' + req.get('host') + ':' + redirect.port + req.url);
+		if (req.get('host')) {
+			if (req.get('host').indexOf(redirect.host) !== -1) {
+				return res.redirect('http://' + req.get('host') + ':' + redirect.port + req.url);
+			}
 		}
 	}
 	next();
@@ -86,9 +88,12 @@ app.get('/router', require('./routes/router'));
 app.get('/about', require('./routes/about'));
 
 var cipherList = [
+	'ECDHE-RSA-AES128-CBC-SHA256',
+	'ECDHE-RSA-AES256-CBC-SHA256',
 	'ECDHE-RSA-AES128-SHA256',
 	'AES128-GCM-SHA256',
 	'HIGH',
+	'!RC4',
 	'!MD5',
 	'!aNULL',
 	'!EDH'
