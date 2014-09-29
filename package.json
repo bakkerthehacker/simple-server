@@ -9,6 +9,7 @@
     "async": "*",
     "express": "3.x",
     "jade": "*",
+    "mcquery": "^0.1.1",
     "moment": "*",
     "request": "*",
     "strong-cluster-tls-store": "^0.1.0",

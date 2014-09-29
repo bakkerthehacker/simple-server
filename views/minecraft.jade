@@ -1,23 +1,26 @@
 extends layout
 
 block content
-	each server in status
+	each server in servers
+		h2 #{server.name} Server
 		p The #{server.name} server is <strong>#{server.link}</strong>
-	each server in status
+			ul.status
+				li #{(server.stats.online ? 'Online ' : 'Offline ')}
+					img(src='/images/' + 16 + '/' + (server.stats.online ? 'online' : 'offline') +'.png')
+				if server.stats.online
+					li Players #{server.stats.numplayers}/#{server.stats.maxplayers}
+					if server.stats.player_.length
+						ul.players.cleanList
+							each player in server.stats.player_
+								li
+									img(src='http://mcsk.in/helm/' + player + '/' + imgSize)
+									= ' ' + player
 		h3 #{server.name} Rules
 		ul.rules
 			each rule in server.rules
 				li #{rule}
-	h3 Map
+	h2 Map
 	p The map is available at 
 		a(href='http://' + link target='_blank')
 			<strong>#{link}</strong>
-	each server in status
-		if server.players.length
-			h3 #{server.name} Players
-			p
-				ul.players.cleanList
-					each player in server.players
-						li
-							img(src='http://mcsk.in/helm/' + player.username + '/' + imgSize)
-							= ' ' + player.username
+
