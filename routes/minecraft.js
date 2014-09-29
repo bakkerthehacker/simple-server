@@ -1,6 +1,4 @@
 var async = require('async');
-var request = require('request');
-var moment = require('moment');
 var Query = require('mcquery');
 
 var serverDomain = 'server.bakker.pw:9980';

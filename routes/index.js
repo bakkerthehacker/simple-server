@@ -1,6 +1,4 @@
 var async = require('async');
-var request = require('request');
-var moment = require('moment');
 var child_process = require('child_process');
 
 
@@ -32,8 +30,7 @@ module.exports = function(req, res){
 				chunk: {
 					name: 'Chunk',
 					online: true,
-					disk: results.chunkDisk,
-					updated: 'now'
+					disk: results.chunkDisk
 				}
 			}
 		});

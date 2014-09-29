@@ -3,7 +3,6 @@ var http = require('http');
 var https = require('https');
 var path = require('path');
 var fs = require('fs');
-var tlsSessions = require('strong-cluster-tls-store');
 
 var app = express();
 
@@ -108,8 +107,6 @@ var credentials = {
 
 var httpServer = http.createServer(app);
 var httpsServer = https.createServer(credentials, app);
-
-tlsSessions(httpsServer);
 
 httpServer.listen(app.get('port'), function(){
 	console.log('Express server listening on port ' + app.get('port'));
