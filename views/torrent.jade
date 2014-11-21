@@ -2,8 +2,12 @@ extends layout
 
 block content
 	p The torrent server is 
-		a(href='http://' + link target='_blank')
-			<strong>#{link}</strong>
+		a(href=link.server target='_blank')
+			<strong>here</strong>
+	p The files show up 
+		a(href=link.files target='_blank')
+			<strong>here</strong>
+		
 	p The username is <strong>torrent</strong> and the password is the wifi password
 	h3 Torrent Rules
 	ul.rules

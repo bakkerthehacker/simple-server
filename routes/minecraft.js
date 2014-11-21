@@ -39,7 +39,7 @@ module.exports = function(req, res){
 	}, function(parallelError, results){
 		res.render('minecraft', {
 			title: 'Minecraft',
-			link: 'map.bakker.pw',
+			link: 'map',
 			servers: {
 				survival: {
 					name: 'Survival',

@@ -1,4 +1,5 @@
 var express = require('express');
+var httpProxy = require('http-proxy');
 var http = require('http');
 var https = require('https');
 var path = require('path');
@@ -12,27 +13,6 @@ app.set('httpsport', process.env.HTTPS_PORT || 443);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-redirects = [
-	{host:'torrent.bakker.pw',port:'9091'},
-	{host:'chunk.bakker.pw',port:'9980'},
-	{host:'xbmc.bakker.pw',port:'4444'},
-];
-
-// redirect
-function redirect(req, res, next) {
-	for(var i = 0; i < redirects.length; i++){
-		redirect = redirects[i];
-		if (req.get('host')) {
-			if (req.get('host').indexOf(redirect.host) !== -1) {
-				return res.redirect('http://' + req.get('host') + ':' + redirect.port + req.url);
-			}
-		}
-	}
-	next();
-}
-
-app.use(redirect);
-
 // redirect http to https
 function requireHTTPS(req, res, next) {
 	if (!req.secure) {
@@ -43,6 +23,34 @@ function requireHTTPS(req, res, next) {
 }
 
 app.use(requireHTTPS);
+
+var redirects = {
+	//'router':'http://127.0.0.1:8081',
+	'transmission':'http://127.0.0.1:9091',
+	'torrent_files':'http://127.0.0.1:9980',
+	'chunk':'http://127.0.0.1:9980',
+	'icons':'http://127.0.0.1:9980',
+	'map':'http://127.0.0.1:9980',
+	//'xbmc':'http://127.0.0.1:4444',
+};
+
+var proxy = httpProxy.createProxyServer({});
+
+function proxyRedirect(req, res, next) {
+	var first = req.url.split('/')[1];
+	if (redirects[first]) {
+		return proxy.web(req, res, {
+			target : redirects[first],
+			headers : {
+				host : 'www.bakker.pw:80'
+			}
+		});
+	}
+	next();
+}
+
+app.use(proxyRedirect);
+
 
 //app.use(express.favicon());
 app.use(express.favicon(path.join(__dirname, 'public/images/favicon.ico')));

@@ -1,15 +1,16 @@
 {
-	"name": "simple-server",
-	"version": "0.0.3",
-	"private": true,
-	"scripts": {
-		"start": "node app.js"
-	},
-	"dependencies": {
-		"async": "~0.9.0",
-		"express": "~3.17.5",
-		"jade": "~1.7.0",
-		"mcquery": "~0.1.1",
-		"stylus": "~0.49.1"
-	}
+  "name": "simple-server",
+  "version": "0.0.3",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "async": "~0.9.0",
+    "express": "~3.17.5",
+    "http-proxy": "~1.6.0",
+    "jade": "~1.7.0",
+    "mcquery": "~0.1.1",
+    "stylus": "~0.49.1"
+  }
 }

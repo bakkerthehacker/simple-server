@@ -13,14 +13,14 @@ block content
 						ul.players.cleanList
 							each player in server.stats.player_
 								li
-									img(src='http://mcsk.in/helm/' + player + '/' + imgSize)
+									img(src='https://minotar.net/helm/' + player + '/' + imgSize)
 									= ' ' + player
 		h3 #{server.name} Rules
 		ul.rules
 			each rule in server.rules
 				li #{rule}
 	h2 Map
-	p The map is available at 
-		a(href='http://' + link target='_blank')
-			<strong>#{link}</strong>
+	p The map is available 
+		a(href=link target='_blank')
+			<strong>here</strong>
 
