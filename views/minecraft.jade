@@ -8,6 +8,7 @@ block content
 				li #{(server.stats.online ? 'Online ' : 'Offline ')}
 					img(src='/images/' + 16 + '/' + (server.stats.online ? 'online' : 'offline') +'.png')
 				if server.stats.online
+					li Version #{server.stats.version}
 					li Players #{server.stats.numplayers}/#{server.stats.maxplayers}
 					if server.stats.player_.length
 						ul.players.cleanList
@@ -15,10 +16,11 @@ block content
 								li
 									img(src='https://minotar.net/helm/' + player + '/' + imgSize)
 									= ' ' + player
-		h3 #{server.name} Rules
-		ul.rules
-			each rule in server.rules
-				li #{rule}
+		if server.rules.length
+			h3 #{server.name} Rules
+			ul.rules
+				each rule in server.rules
+					li #{rule}
 	h2 Map
 	p The map is available 
 		a(href=link target='_blank')

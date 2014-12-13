@@ -36,6 +36,9 @@ module.exports = function(req, res){
 		creativeStats: function(parallelCallback){
 			queryServerStats(25560, parallelCallback);
 		},
+		testStats: function(parallelCallback){
+			queryServerStats(25559, parallelCallback);
+		},
 	}, function(parallelError, results){
 		res.render('minecraft', {
 			title: 'Minecraft',
@@ -56,6 +59,13 @@ module.exports = function(req, res){
 						'Do not use the plugins unless you know what you are doing',
 					],
 					stats: results.creativeStats
+				},
+				test: {
+					name: 'Test',
+					link: 'test.bakker.pw',
+					rules: [
+					],
+					stats: results.testStats
 				}
 			}
 		});
