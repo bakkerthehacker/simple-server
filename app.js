@@ -5,6 +5,8 @@ var https = require('https');
 var path = require('path');
 var fs = require('fs');
 
+var DOMAIN = 'bakker.pw';
+
 var app = express();
 
 // all environments
@@ -24,6 +26,16 @@ function requireHTTPS(req, res, next) {
 
 app.use(requireHTTPS);
 
+function stripWWW(req, res, next) {
+	if (req.get('host')) {
+		if (req.get('host').indexOf('www.' + DOMAIN) !== -1) {
+			return res.redirect('https://' + DOMAIN + req.url);
+		}
+	}
+	next();
+}
+app.use(stripWWW);
+
 var redirects = {
 	//'router':'http://127.0.0.1:8081',
 	'transmission':'http://127.0.0.1:9091',
@@ -39,12 +51,14 @@ var proxy = httpProxy.createProxyServer({});
 function proxyRedirect(req, res, next) {
 	var first = req.url.split('/')[1];
 	if (redirects[first]) {
-		return proxy.web(req, res, {
-			target : redirects[first],
-			headers : {
-				host : 'www.bakker.pw:80'
-			}
-		});
+		try {
+			return proxy.web(req, res, {
+				target : redirects[first]
+			});
+		}
+		catch(ex) {
+			console.log('Caught from proxy web:' + ex);
+		}
 	}
 	next();
 }
@@ -74,7 +88,7 @@ app.use(require('./routes/404'));
 var imgSize = 24;
 app.locals({
 	imgSize: imgSize,
-	domain: 'bakker.pw',
+	domain: DOMAIN,
 	navList: [
 		{name:'Home', href:'/', img:'/images/'+imgSize+'/workspace-switcher.png'},
 		{name:'Minecraft', href:'/minecraft', img:'/images/'+imgSize+'/minecraft.png'},
