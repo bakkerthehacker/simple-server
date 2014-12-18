@@ -1,21 +1,16 @@
 var async = require('async');
 var Query = require('mcquery');
 
-var serverDomain = 'server.bakker.pw:9980';
-
 function queryServerStats(port, callback) {
 	
-	var query = new Query('localhost', port);
+	var query = new Query('localhost', port, {timeout: 100});
 
 	query.connect(function(connectError){
 		if(connectError){
-			//return callback(connectError)
 			return callback(null, {'online':false});
 		}
 		query.full_stat(function(statError, stat){
-		//query.basic_stat(function(statError, stat){
 			if(statError){
-				//return callback(statError)
 				return callback(null, {'online':false});
 			}
 			//console.log(stat)
