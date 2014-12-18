@@ -48,17 +48,16 @@ var redirects = {
 
 var proxy = httpProxy.createProxyServer({});
 
+proxy.on('error', function(proxyError) {
+	console.log('proxy error: ' + proxyError);
+});
+
 function proxyRedirect(req, res, next) {
 	var first = req.url.split('/')[1];
 	if (redirects[first]) {
-		try {
-			return proxy.web(req, res, {
-				target : redirects[first]
-			});
-		}
-		catch(ex) {
-			console.log('Caught from proxy web:' + ex);
-		}
+		return proxy.web(req, res, {
+			target : redirects[first]
+		});
 	}
 	next();
 }
