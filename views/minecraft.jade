@@ -1,6 +1,12 @@
 extends layout
 
 block content
+
+	h2 Map
+	p The map is available 
+		a(href=link target='_blank')
+			<strong>here</strong>
+
 	each server in servers
 		h2 #{server.name} Server
 		p The #{server.name} server is <strong>#{server.link}</strong>
@@ -16,13 +22,10 @@ block content
 								li
 									img(src='https://minotar.net/helm/' + player + '/' + imgSize)
 									= ' ' + player
+							
 		if server.rules.length
 			h3 #{server.name} Rules
 			ul.rules
 				each rule in server.rules
 					li #{rule}
-	h2 Map
-	p The map is available 
-		a(href=link target='_blank')
-			<strong>here</strong>
 
