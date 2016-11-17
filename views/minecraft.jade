@@ -2,14 +2,14 @@ extends layout
 
 block content
 
-	h2 Map
-	p The map is available 
-		a(href=link target='_blank')
-			<strong>here</strong>
-
 	each server in servers
 		h2 #{server.name} Server
 		p The #{server.name} server is <strong>#{server.link}</strong>
+			ul
+				each sub_link in server.sub_links
+					li
+						a(href=sub_link.link target='_blank')
+							<strong>#{sub_link.name}</strong>
 			ul.status
 				li #{(server.stats.online ? 'Online ' : 'Offline ')}
 					img(src='/images/' + 16 + '/' + (server.stats.online ? 'online' : 'offline') +'.png')

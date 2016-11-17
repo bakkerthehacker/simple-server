@@ -120,8 +120,12 @@ var cipherList = [
 ];
 
 var credentials = {
-	key: fs.readFileSync('/home/gbakker/openssl/decrypted.private.key'),
-	cert: fs.readFileSync('/home/gbakker/openssl/unified.crt'),
+	//key: fs.readFileSync('/home/gbakker/openssl/decrypted.private.key'),
+	//cert: fs.readFileSync('/home/gbakker/openssl/unified.crt'),
+	key: fs.readFileSync('/etc/letsencrypt/live/'+DOMAIN+'/privkey.pem'),
+	//cert: fs.readFileSync('/etc/letsencrypt/live/'+DOMAIN+'/cert.pem'),
+	cert: fs.readFileSync('/etc/letsencrypt/live/'+DOMAIN+'/fullchain.pem'),
+	//ca: fs.readFileSync('/etc/letsencrypt/live/'+DOMAIN+'/fullchain.pem'),
 	ciphers: cipherList.join(':'),
 	honorCipherOrder: true	
 };
