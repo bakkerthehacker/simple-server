@@ -67,7 +67,7 @@ module.exports = function(req, res){
 					stats: results.creativeStats
 				},*/
 				ftb: {
-					name: 'FTB Hermitpack',
+					name: 'FTB Beyond',
 					link: 'ftb.bakker.pw',
 					sub_links: [{
 						'name': 'Mods',
