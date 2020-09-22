@@ -8,9 +8,9 @@
   "dependencies": {
     "async": "~0.9.0",
     "express": "~3.17.5",
-    "http-proxy": "~1.8.1",
+    "http-proxy": "~1.18.1",
     "jade": "~1.8.2",
     "mcquery": "~0.2.5",
-    "stylus": "~0.49.3"
+    "stylus": "~0.54.8"
   }
 }
